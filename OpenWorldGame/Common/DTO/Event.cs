@@ -8,5 +8,6 @@ namespace Common.DTO
         public string Name { get; set; }
         public int SessionID { get; set; }
         public DateTime TimeStamp { get; set; }
+        public long TimeStampTicks { get; set; }
     }
 }

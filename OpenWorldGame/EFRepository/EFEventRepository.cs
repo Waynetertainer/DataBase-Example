@@ -11,29 +11,29 @@ namespace EFRepository
         {
         }
 
+        /// <summary>
+        /// Counts how often each Event occours
+        /// </summary>
+        /// <returns>
+        /// Each Event withy the nuber of times it occours
+        /// </returns>
         public IEnumerable<EventAmount> GetAllEventAmounts()
         {
-            IEnumerable<int> test()
-            {
-                foreach (EventAmount allEventAmount in GetAllEventAmounts())
-                {
-                    if (allEventAmount.Amount > 2)
-                    {
-                        yield return allEventAmount.Amount;
-                    }
-                    yield break;
-                }
-
-            }
             return ctx.Events.GroupBy(T => T.Name).Select(T => new EventAmount()
             {
                 Name = T.Key,
                 Amount = T.Count()
             })
             .OrderByDescending(T => T.Amount).ToList();
-
         }
 
+        /// <summary>
+        /// Finds every Event that follows after a given Event with the same Session
+        /// </summary>
+        /// <param name="name">The name of the given Event</param>
+        /// <returns>
+        /// Every Event that follows after a given Event with the same Session
+        /// </returns>
         public IEnumerable<EventAmount> GetNextEvents(string name)
         {
             return ctx.Events
@@ -41,8 +41,8 @@ namespace EFRepository
                 .SelectMany
                 (
                     T => ctx.Events
-                        .Where(e => e.SessionID == T.SessionID && e.TimeStamp > T.TimeStamp)
-                        .OrderBy(t => t.TimeStamp).Take(1)
+                        .Where(e => e.SessionID == T.SessionID && e.TimeStampTicks > T.TimeStampTicks)
+                        .OrderBy(t => t.TimeStampTicks).Take(1)
                 )
                 .GroupBy(T => T.Name)
                 .Select(T => new EventAmount()

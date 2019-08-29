@@ -11,11 +11,17 @@ namespace EFRepository
         {
         }
 
+        /// <summary>
+        /// Finds every Event that is the last in its Session
+        /// </summary>
+        /// <returns>
+        /// The last Event of every Session
+        /// </returns>
         public IEnumerable<EventAmount> GetLastEvents()
         {
             return ctx.Sessions.SelectMany
                 (
-                    S => S.Events.OrderByDescending(E => E.TimeStamp).Take(1)
+                    S => S.Events.OrderByDescending(E => E.TimeStampTicks).Take(1)
                 )
                 .GroupBy(E => E.Name)
                 .Select(T => new EventAmount()

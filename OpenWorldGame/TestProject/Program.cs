@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;// Assembly: Microsoft.VisualStudio.QualityTools.UnitTestFramework
-using System.Linq;
-using Common.DTO;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;// Assembly: Microsoft.VisualStudio.QualityTools.UnitTestFramework
 using OpenWorldGame;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ClientServer.Client
 {
@@ -99,6 +98,7 @@ namespace ClientServer.Client
                 consumer.CreateEvent(eventNames[newEventIndex], gameSession.ID);
                 eventOccurrences[newEventIndex] += 1;
 
+
                 int oldEventIndex = newEventIndex;
                 newEventIndex += de;
 
@@ -180,17 +180,6 @@ namespace ClientServer.Client
                 // test total count
                 Assert.AreEqual(eventFollowers[i].Sum(), total);
             }
-                //foreach (var eventName in eventNames)
-                //{
-                //    Console.WriteLine(eventName);
-                //    var events = consumer.GetNextEvents(eventName);
-                //    foreach (EventAmount eventAmount in events)
-                //    {
-                //        Console.WriteLine("{0} {1}", eventAmount.Name, eventAmount.Amount);
-                //    }
-                //    Console.WriteLine();
-                //    Console.WriteLine();
-                //}
         }
 
         /// <summary>

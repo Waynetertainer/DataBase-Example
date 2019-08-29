@@ -1,5 +1,8 @@
 ﻿namespace Server
 {
+    /// <summary>
+    /// Converts POCO to DTO
+    /// </summary>
     public static class Converter
     {
         public static Common.DTO.Session ToDTO(this Repository.POCO.Session session)
@@ -16,7 +19,8 @@
             {
                 Name = ev.Name,
                 SessionID = ev.SessionID,
-                TimeStamp = ev.TimeStamp
+                TimeStamp = ev.TimeStamp,
+                TimeStampTicks = ev.TimeStampTicks
             };
         }
 

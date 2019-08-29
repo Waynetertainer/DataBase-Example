@@ -7,5 +7,4 @@ namespace Repository.Interfaces
     {
         IEnumerable<EventAmount> GetLastEvents();
     }
-
 }
